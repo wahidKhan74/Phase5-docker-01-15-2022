@@ -1,0 +1,24 @@
+Docker Host : 
+     -> should have java
+        > sudo apt install default-jdk -y
+     -> should have maven
+        > sudo apt install maven -y
+     -> clone project
+        > git clone https://github.com/wahidKhan74/ecom-webservice.git
+        > cd ecom-webservice
+     -> buid artifact of the project.
+        > mvn clean package 
+
+
+
+# Create a Dockerfile to buil image for springboot webservice
+    > sudo docker image build -t <imagetagname> .
+    > sudo docker image build -t ecom-webservice .
+
+# Tun container by using custom image
+    > sudo docker container run  --name <ecom-web-service> -p 8081:8081 -d <ecom-webservice>
+    > sudo docker container run  --name ecomwebserver  -p 8081:8081 -d ecom-webservice
+
+# verify log 
+    > sudo docker container logs <container-name>
+    > sudo docker container logs ecomwebserver
