@@ -1,0 +1,9 @@
+# Create a ec2 instance -> ( Jenkins server + Docker server).
+# Configuring jenkins pipeline -> checkout src code  + maven build + docker build
+# Test pipeline
+---------------------------------------------------------------------------------
+# Create a ec2 instance -> ( Jenkins server + Docker server).
+   -> Create ec2 instance 
+   -> Conect Ec2 instance
+   -> Install Jenkins server
+   -> Install Docker server
