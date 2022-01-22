@@ -1,0 +1,24 @@
+# first initialize a docker swarm cluster
+> sudo docker swarm init
+
+# To add a worker to this swarm
+> sudo docker swarm join --token SWMTKN-1-12sxhvb37h0wi4wqdekrdjr9uo559fosa3zilbr1964vg7dlbr-54focq9tqsql947rmg2ewnhty 172.31.91.114:2377
+
+# verify created node
+> sudo docker node ls
+
+# deploy docker container based on custome image to docker swarm cluster.
+> sudo docker service create -p 8081:8081 --name ecom-service  ecom-webservice
+
+# list services
+-> sudo docker service ls
+
+#list container
+-> sudo docker ps -a
+
+---------------------------------------------------------------------------------
+# deploy docker container based on custome phpcode image to docker swarm cluster.
+> sudo docker service create -p 80:80 --name php-service wahid74/phpcode
+
+# increase the servce replica 
+> sudo docker service scale php-service=4

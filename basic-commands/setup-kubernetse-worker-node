@@ -1,0 +1,24 @@
+1. Install Kubernetese & verify version
+
+2. disabling swap mem.
+   > sudo swapoff -a
+   > sudo sed -i '/ swap / s/^/#/' /etc/fstab
+
+3. Adding cgroup for cluster
+   > sudo vim  /etc/docker/daemon.json   [  -> Press I -> Ctrl + V  => Press esc  =>  shift + : wq  => enter ]
+        {
+            "exec-opts": ["native.cgroupdriver=systemd"]
+        }
+
+    > sudo systemctl daemon-reload
+    > sudo systemctl restart docker
+    > sudo systemctl restart kubelet
+    > sudo docker info |grep -i cgroup
+
+3. Assign unique hostname
+   > sudo hostnamectl set-hostname worker01
+
+4. Reboot instance.
+
+5. Join Master Node
+> sudo kubeadm join 172.31.80.236:6443 --token znevc2.s8hdais619i3hwqx --discovery-token-ca-cert-hash sha256:95c919f8d3921e11b9887ae07987f0bd1478f25a81650dc8e8ab3fc81c22b2f3

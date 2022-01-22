@@ -1,0 +1,9 @@
+# Kubernetese master slave archtecture setup 
+     # Create a master node -> on Ec2  -> ubuntu 20.0.4  
+            -> install docker   
+            -> install kubernetse   
+            -> setup kubernetse master node
+     # Create a worker node   -> on Ec2  -> ubuntu 20.0.4
+            -> install docker   
+            -> install kubernetse
+            -> setup kubernetse worker node

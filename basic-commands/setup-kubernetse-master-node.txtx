@@ -1,0 +1,41 @@
+1. Install Kubernetese & verify version
+
+2. disabling swap mem.
+   > sudo swapoff -a
+   > sudo sed -i '/ swap / s/^/#/' /etc/fstab
+
+3. Adding cgroup for cluster
+   > sudo vim  /etc/docker/daemon.json   [  -> Press I -> Ctrl + V  => Press esc  =>  shift + : wq  => enter ]
+        {
+            "exec-opts": ["native.cgroupdriver=systemd"]
+        }
+
+    > sudo systemctl daemon-reload
+    > sudo systemctl restart docker
+    > sudo systemctl restart kubelet
+    > sudo docker info |grep -i cgroup
+
+3. Assign unique hostname
+   > sudo hostnamectl set-hostname master-node
+
+4. Reboot instance.
+
+5. Start a kubernatese master node (Initialize Kubernetes on Master Node) 
+   > sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+
+6. To start using your cluster, you need to run the following as a regular user:
+  > mkdir -p $HOME/.kube
+  > sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  > sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+7. Apply a pod newtwork to the cluster
+   > export kubever=$(kubectl version | base64 | tr -d '\n')
+   > kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever" 
+
+
+8. Verify that everything is running and communicating
+   >  kubectl get pods --all-namespaces
+
+9. list worker node join command
+  > kubeadm token create --print-join-command

@@ -1,0 +1,14 @@
+------------------------------------------------------------------------
+2. scalling up docker container with docker swarm
+------------------------------------------------------------------------
+# increase the servce replica 
+> sudo docker service scale ecom-service=4
+
+# list service 
+-> sudo docker service ls
+
+# list container
+-> sudo docker ps -a
+
+# decrease the servce replica 
+> sudo docker service scale ecom-service=2
